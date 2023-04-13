@@ -65,10 +65,10 @@ while not rospy.is_shutdown():
 	plan_point1 = Twist()
 	plan_point1.linear.x = x
 	plan_point1.linear.y = y
-	plan_point1.linear.z = z + 0.5
+	plan_point1.linear.z = z + 0.1
 	plan_point1.angular.x = -2.98
-	plan_point1.angular.y = -0.03
-	plan_point1.angular.z = 1.95
+	plan_point1.angular.y = -0.05
+	plan_point1.angular.z = -0.33
 	# add point 1 to the plan
 	plan.points.append(plan_point1)
 	
@@ -83,27 +83,38 @@ while not rospy.is_shutdown():
 	# add point 2 to the plan
 	plan.points.append(plan_point2)
 	
-	#Motion 3: Move Object Further
+	#Motion 3: Starting place
 	plan_point3 = Twist()
-	plan_point3.linear.x = -0.73
-	plan_point3.linear.y = -0.13
-	plan_point3.linear.z = 0.35
-	plan_point3.angular.x = -3.1
-	plan_point3.angular.y = -0.12
-	plan_point3.angular.z = 1.93
+	plan_point3.linear.x = x
+	plan_point3.linear.y = y
+	plan_point3.linear.z = z + 0.1
+	plan_point3.angular.x = -2.98
+	plan_point3.angular.y = -0.05
+	plan_point3.angular.z = -0.33
 	# add point 3 to the plan
 	plan.points.append(plan_point3)
 	
-	#Motion 4: Lowering Object
+	#Motion 4: Move Object Further
 	plan_point4 = Twist()
-	plan_point4.linear.x = -0.87
-	plan_point4.linear.y = -0.13
-	plan_point4.linear.z = 0.1
-	plan_point4.angular.x = -2.88
-	plan_point4.angular.y = -0.00
-	plan_point4.angular.z = 1.92
-	# add tpoint 4 to the plan
+	plan_point4.linear.x = -0.2
+	plan_point4.linear.y = 0.57
+	plan_point4.linear.z = 0.19
+	plan_point4.angular.x = 2.88
+	plan_point4.angular.y = -0.05
+	plan_point4.angular.z = .16
+	# add point 4 to the plan
 	plan.points.append(plan_point4)
+	
+	#Motion 5: Lowering Object
+	plan_point5 = Twist()
+	plan_point5.linear.x = -0.05
+	plan_point5.linear.y = 0.66
+	plan_point5.linear.z = -0.05
+	plan_point5.angular.x = 3.00
+	plan_point5.angular.y = -0.05
+	plan_point5.angular.z = -0.089
+	# add tpoint 5 to the plan
+	plan.points.append(plan_point5)
 	
 	# publish the plan
 	plan_pub.publish(plan)
