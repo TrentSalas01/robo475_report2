@@ -66,9 +66,9 @@ while not rospy.is_shutdown():
 	plan_point1.linear.x = 0.13
 	plan_point1.linear.y = 0.7
 	plan_point1.linear.z = 0.255
-	plan_point1.angular.x = -math.pi
-	plan_point1.angular.y = 0
-	plan_point1.angular.z = 0
+	plan_point1.angular.x = 3.14
+	plan_point1.angular.y = 0.00
+	plan_point1.angular.z = 3.14
 	# add point 1 to the plan
 	plan.points.append(plan_point1)
 	
@@ -77,9 +77,9 @@ while not rospy.is_shutdown():
 	plan_point2.linear.x = x
 	plan_point2.linear.y = y
 	plan_point2.linear.z = z + radius
-	plan_point2.angular.x = -math.pi
-	plan_point2.angular.y = 0
-	plan_point2.angular.z = -0.35
+	plan_point2.angular.x = 3.14
+	plan_point2.angular.y = 0.00
+	plan_point2.angular.z = 3.14
 	# add point 2 to the plan
 	plan.points.append(plan_point2)
 	
@@ -88,9 +88,9 @@ while not rospy.is_shutdown():
 	plan_point3.linear.x = 0.13
 	plan_point3.linear.y = 0.7
 	plan_point3.linear.z = 0.255
-	plan_point3.angular.x = -math.pi
-	plan_point3.angular.y = 0
-	plan_point3.angular.z = 0
+	plan_point3.angular.x = 3.14
+	plan_point3.angular.y = 0.00
+	plan_point3.angular.z = 3.14
 	# add point 3 to the plan
 	plan.points.append(plan_point3)
 	
@@ -99,22 +99,33 @@ while not rospy.is_shutdown():
 	plan_point4.linear.x = -0.2
 	plan_point4.linear.y = 0.57
 	plan_point4.linear.z = 0.19
-	plan_point4.angular.x = math.pi
-	plan_point4.angular.y = 0
-	plan_point4.angular.z = 0
+	plan_point4.angular.x = 3.14
+	plan_point4.angular.y = 0.00
+	plan_point4.angular.z = 3.14
 	# add point 4 to the plan
 	plan.points.append(plan_point4)
 	
 	#Motion 5: Lowering Object
 	plan_point5 = Twist()
-	plan_point5.linear.x = -0.05
-	plan_point5.linear.y = 0.66
+	plan_point5.linear.x = -0.2
+	plan_point5.linear.y = 0.57
 	plan_point5.linear.z = 0.05
-	plan_point5.angular.x = math.pi
-	plan_point5.angular.y = 0
-	plan_point5.angular.z = 0
+	plan_point5.angular.x = 3.14
+	plan_point5.angular.y = 0.00
+	plan_point5.angular.z = 3.14
 	# add tpoint 5 to the plan
 	plan.points.append(plan_point5)
+	
+	#Motion 6: Lowering Object
+	plan_point6 = Twist()
+	plan_point6.linear.x = -0.2
+	plan_point6.linear.y = 0.57
+	plan_point6.linear.z = 0.19
+	plan_point6.angular.x = 3.14
+	plan_point6.angular.y = 0.00
+	plan_point6.angular.z = 3.14
+	# add tpoint 5 to the plan
+	plan.points.append(plan_point6)
 	
 	# publish the plan
 	plan_pub.publish(plan)
