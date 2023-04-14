@@ -3,17 +3,25 @@
 import rospy
 import math
 
-# import the plan message
+# import the plan message from the ur5e_control. Plan also available in this package!
 from ur5e_control.msg import Plan
+# import Twist
 from geometry_msgs.msg import Twist
+# import rospy
 import rospy
+# import math
 import math
+# import numpy
 import numpy as np
+# import cv2
 import cv2
+# import XYZarray
 from robot_vision_lectures.msg import XYZarray
+# import SphereParams
 from robot_vision_lectures.msg import SphereParams
 from geometry_msgs.msg import Point
 from cv_bridge import CvBridge
+# import tf2_ros
 import tf2_ros
 from tf.transformations import *
 import tf2_geometry_msgs
@@ -29,9 +37,9 @@ def get_params(sphere_params1):
 if __name__ == '__main__':
     # initialize the node
     rospy.init_node('simple_planner', anonymous = True)
-    # add a subscriber to subscribe to sphere_params to get location of ball
     tfBuffer = tf2_ros.Buffer()
     listener = tf2_ros.TransformListener(tfBuffer)
+    # add a subscriber to subscribe to sphere_params to get location of ball
     plan_sub = rospy.Subscriber('/sphere_params', SphereParams, get_params)
     # add a publisher for sending joint position commands
     plan_pub = rospy.Publisher('/plan', Plan, queue_size = 10)
@@ -42,24 +50,31 @@ if __name__ == '__main__':
     
 
 while not rospy.is_shutdown():
+	# Hand-Eye Corrdination Try and Except to check Frames.
+	# Code from Saeidi, Hamed. University of North Carolina at Wilmington. hsaeidi-uncw/ur5e_control (github.com)
 	try:
 		trans = tfBuffer.lookup_transform("base", "camera_color_optical_frame", rospy.Time())
 	except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
 		print("Frames Not Available!")
 		loop_rate.sleep()
 		continue
+		
 	pt_in_tool = tf2_geometry_msgs.PointStamped()
 	pt_in_tool.header.frame_id = 'camera_color_optical_frame'
 	pt_in_tool.header.stamp = rospy.get_rostime()
 	
+	# Get the points from sphere_params
 	pt_in_tool.point.x = sphere_params.xc
 	pt_in_tool.point.y = sphere_params.yc
 	pt_in_tool.point.z = sphere_params.zc
+	# transform the pts to base frame
 	pt_in_base = tfBuffer.transform(pt_in_tool, 'base', rospy.Duration(1.0))
+	# change the variable of each point and radius
 	x = pt_in_base.point.x
 	y = pt_in_base.point.y
 	z = pt_in_base.point.z
 	radius = sphere_params.radius
+	# End code from Saeidi, Hamed. University of North Carolina at Wilmington. hsaeidi-uncw/ur5e_control (github.com)
 	
 	#Motion 1: Starting place
 	plan_point1 = Twist()
