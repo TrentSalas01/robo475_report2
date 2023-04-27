@@ -1,0 +1,27 @@
+# robo475_report2 checklist:
+- install git repos
+	- https://github.com/TrentSalas01/robo475_report2.git
+	- https://github.com/TrentSalas01/robotics_lab4.git
+	- https://github.com/TrentSalas01/robotics_lab6.git
+	- https://github.com/hsaeidi-uncw/robot_vision_lectures.git
+	- https://github.com/hsaeidi-uncw/ur5e_control.git
+- change head for ur5e control: 
+- git checkout 81e49bd593c0b136d1a2bc6c4cdb9626a3d0928f
+- catkin_make
+- roscore
+- simulations: roslaunch ur_gazebo
+- real robot: rosrun ur5e_control ur5e_ros_connection.sh
+- simulation: manual init
+- real robot: manual_init_real_robot.py
+- change param name=sim to true/false in controller launch
+- simulation: rosrun ur5e_control ur5e_controller
+- real robot: roslaunch ur5e_control ur5e_controller.launch
+- rosrun ur5e_control task_space_trajectory
+- rosrun robot_vision_lectures crop_visualize_3d
+- simulation: cd Downloads: ./play_data
+- real robot: roslaunch realsense2_camera rs_rgbd.launch
+- roslaunch frame_publisher.launch
+- run lab 4
+- run lab 6
+- rosrun rviz rviz
+
