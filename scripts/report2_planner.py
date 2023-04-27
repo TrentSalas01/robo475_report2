@@ -96,9 +96,9 @@ while not rospy.is_shutdown():
 	plan_point2.linear.x = x
 	plan_point2.linear.y = y
 	plan_point2.linear.z = z
-	plan_point2.angular.x = 3.112
-	plan_point2.angular.y = 0.056
-	plan_point2.angular.z = 1.531
+	plan_point2.angular.x = 3.126
+	plan_point2.angular.y = 0.016
+	plan_point2.angular.z = 1.530
 	plan_mode.data = mode
 	plan.points.append(plan_point2)
 	plan.modes.append(point_mode)
@@ -135,9 +135,9 @@ while not rospy.is_shutdown():
 	plan_point5.linear.x = 0.0326
 	plan_point5.linear.y = -0.3107
 	plan_point5.linear.z = z
-	plan_point5.angular.x = 3.133
-	plan_point5.angular.y = -0.0022
-	plan_point5.angular.z = 1.782
+	plan_point5.angular.x = 3.126
+	plan_point5.angular.y = 0.016
+	plan_point5.angular.z = 1.530
 	plan_mode.data = mode
 	plan.points.append(plan_point5)
 	plan.modes.append(point_mode)
