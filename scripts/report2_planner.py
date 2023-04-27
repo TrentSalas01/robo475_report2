@@ -86,10 +86,23 @@ while not rospy.is_shutdown():
 	plan_point1.angular.x = 3.126
 	plan_point1.angular.y = 0.016
 	plan_point1.angular.z = 1.530
-	plan_mode.data = mode
+	plan_mode.data = 0
 	plan.points.append(plan_point1)
 	plan.modes.append(point_mode)
-		
+	
+	# pick up ball based off coords given from sphere params
+	plan_point21 = Twist()
+	point_mode = UInt8()
+	plan_point21.linear.x = x
+	plan_point21.linear.y = y
+	plan_point21.linear.z = z
+	plan_point21.angular.x = 3.126
+	plan_point21.angular.y = 0.016
+	plan_point21.angular.z = 1.530
+	plan_mode.data = 0
+	plan.points.append(plan_point21)
+	plan.modes.append(point_mode)
+	
 	# pick up ball based off coords given from sphere params
 	plan_point2 = Twist()
 	point_mode = UInt8()
@@ -124,7 +137,7 @@ while not rospy.is_shutdown():
 	plan_point4.linear.z = 0.429
 	plan_point4.angular.x = 3.126
 	plan_point4.angular.y = 0.016
-	plan_point4.angular.z = 1.782
+	plan_point4.angular.z = 1.530
 	plan_mode.data = mode
 	plan.points.append(plan_point4)
 	plan.modes.append(point_mode)
@@ -150,7 +163,7 @@ while not rospy.is_shutdown():
 	plan_point6.linear.z = 0.429
 	plan_point6.angular.x = 3.126
 	plan_point6.angular.y = 0.016
-	plan_point6.angular.z = 1.782
+	plan_point6.angular.z = 1.530
 	plan_mode.data = mode
 	plan.points.append(plan_point6)
 	plan.modes.append(point_mode)
