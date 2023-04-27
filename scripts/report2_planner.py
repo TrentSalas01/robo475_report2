@@ -75,7 +75,7 @@ while not rospy.is_shutdown():
 	radius = sphere_params.radius
 	# End code from Saeidi, Hamed. University of North Carolina at Wilmington. hsaeidi-uncw/ur5e_control (github.com)
 	
-	# move above ball
+	# move above ball (manual init)
 	plan = Plan()
 	plan_point1 = Twist()
 	plan_point1.linear.x = -0.0166
@@ -86,7 +86,7 @@ while not rospy.is_shutdown():
 	plan_point1.angular.z = 1.530
 	plan.points.append(plan_point1)
 		
-	# pick up ball
+	# pick up ball based off coords given from sphere params
 	plan_point2 = Twist()
 	plan_point2.linear.x = x
 	plan_point2.linear.y = y
@@ -96,7 +96,7 @@ while not rospy.is_shutdown():
 	plan_point2.angular.z = 1.531
 	plan.points.append(plan_point2)
 		
-	# move the robot back above the ball
+	# move the robot back above the ball (manual init)
 	plan_point3 = Twist()
 	plan_point3.linear.x = -0.0166
 	plan_point3.linear.y = -0.406
@@ -106,7 +106,7 @@ while not rospy.is_shutdown():
 	plan_point3.angular.z = 1.530
 	plan.points.append(plan_point3)
 		
-	# move the robot holding the ball to a new location
+	# move the robot somewhere else
 	plan_point4 = Twist()
 	plan_point4.linear.x = 0.08
 	plan_point4.linear.y = -0.397
@@ -126,7 +126,7 @@ while not rospy.is_shutdown():
 	plan_point5.angular.z = 1.782
 	plan.points.append(plan_point5)
 		
-	# pick arm back up and return to start
+	# pick arm back up and return to start by loop
 	plan_point6 = Twist()
 	plan_point6.linear.x = 0.08
 	plan_point6.linear.y = -0.397
