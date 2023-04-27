@@ -25,6 +25,7 @@ from cv_bridge import CvBridge
 import tf2_ros
 from tf.transformations import *
 import tf2_geometry_msgs
+from std_msgs.msg import UInt8
 
 #initiate SphereParams
 sphere_params = SphereParams()
@@ -78,63 +79,81 @@ while not rospy.is_shutdown():
 	# move above ball (manual init)
 	plan = Plan()
 	plan_point1 = Twist()
+	point_mode = UInt8()
 	plan_point1.linear.x = -0.0166
 	plan_point1.linear.y = -0.406
 	plan_point1.linear.z = 0.429
 	plan_point1.angular.x = 3.126
 	plan_point1.angular.y = 0.016
 	plan_point1.angular.z = 1.530
+	plan_mode.data = mode
 	plan.points.append(plan_point1)
+	plan.modes.append(point_mode)
 		
 	# pick up ball based off coords given from sphere params
 	plan_point2 = Twist()
+	point_mode = UInt8()
 	plan_point2.linear.x = x
 	plan_point2.linear.y = y
 	plan_point2.linear.z = z
 	plan_point2.angular.x = 3.112
 	plan_point2.angular.y = 0.056
 	plan_point2.angular.z = 1.531
+	plan_mode.data = mode
 	plan.points.append(plan_point2)
+	plan.modes.append(point_mode)
 		
 	# move the robot back above the ball (manual init)
 	plan_point3 = Twist()
+	point_mode = UInt8()
 	plan_point3.linear.x = -0.0166
 	plan_point3.linear.y = -0.406
 	plan_point3.linear.z = 0.429
 	plan_point3.angular.x = 3.126
 	plan_point3.angular.y = 0.016
 	plan_point3.angular.z = 1.530
+	plan_mode.data = mode
 	plan.points.append(plan_point3)
+	plan.modes.append(point_mode)
 		
 	# move the robot somewhere else
 	plan_point4 = Twist()
+	point_mode = UInt8()
 	plan_point4.linear.x = 0.08
 	plan_point4.linear.y = -0.397
 	plan_point4.linear.z = 0.429
 	plan_point4.angular.x = 3.126
 	plan_point4.angular.y = 0.016
 	plan_point4.angular.z = 1.782
+	plan_mode.data = mode
 	plan.points.append(plan_point4)
+	plan.modes.append(point_mode)
 	
 	# put the ball down in new location 
 	plan_point5 = Twist()
+	point_mode = UInt8()
 	plan_point5.linear.x = 0.0326
 	plan_point5.linear.y = -0.3107
 	plan_point5.linear.z = z
 	plan_point5.angular.x = 3.133
 	plan_point5.angular.y = -0.0022
 	plan_point5.angular.z = 1.782
+	plan_mode.data = mode
 	plan.points.append(plan_point5)
+	plan.modes.append(point_mode)
 		
 	# pick arm back up and return to start by loop
 	plan_point6 = Twist()
+	point_mode = UInt8()
 	plan_point6.linear.x = 0.08
 	plan_point6.linear.y = -0.397
 	plan_point6.linear.z = 0.429
 	plan_point6.angular.x = 3.126
 	plan_point6.angular.y = 0.016
 	plan_point6.angular.z = 1.782
+	plan_mode.data = mode
 	plan.points.append(plan_point6)
+	plan.modes.append(point_mode)
 	
 	# publish the plan
 	plan_pub.publish(plan)
