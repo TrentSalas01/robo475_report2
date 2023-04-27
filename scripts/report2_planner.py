@@ -86,7 +86,7 @@ while not rospy.is_shutdown():
 	plan_point1.angular.x = 3.126
 	plan_point1.angular.y = 0.016
 	plan_point1.angular.z = 1.530
-	plan_mode.data = 0
+	point_mode.data = 0
 	plan.points.append(plan_point1)
 	plan.modes.append(point_mode)
 	
@@ -95,11 +95,11 @@ while not rospy.is_shutdown():
 	point_mode = UInt8()
 	plan_point21.linear.x = x
 	plan_point21.linear.y = y
-	plan_point21.linear.z = z
+	plan_point21.linear.z = z + 0.015
 	plan_point21.angular.x = 3.126
 	plan_point21.angular.y = 0.016
 	plan_point21.angular.z = 1.530
-	plan_mode.data = 0
+	point_mode.data = 0
 	plan.points.append(plan_point21)
 	plan.modes.append(point_mode)
 	
@@ -108,11 +108,11 @@ while not rospy.is_shutdown():
 	point_mode = UInt8()
 	plan_point2.linear.x = x
 	plan_point2.linear.y = y
-	plan_point2.linear.z = z
+	plan_point2.linear.z = z + 0.015
 	plan_point2.angular.x = 3.126
 	plan_point2.angular.y = 0.016
 	plan_point2.angular.z = 1.530
-	plan_mode.data = mode
+	point_mode.data = 2
 	plan.points.append(plan_point2)
 	plan.modes.append(point_mode)
 		
@@ -125,7 +125,7 @@ while not rospy.is_shutdown():
 	plan_point3.angular.x = 3.126
 	plan_point3.angular.y = 0.016
 	plan_point3.angular.z = 1.530
-	plan_mode.data = mode
+	point_mode.data = 0
 	plan.points.append(plan_point3)
 	plan.modes.append(point_mode)
 		
@@ -138,7 +138,7 @@ while not rospy.is_shutdown():
 	plan_point4.angular.x = 3.126
 	plan_point4.angular.y = 0.016
 	plan_point4.angular.z = 1.530
-	plan_mode.data = mode
+	point_mode.data = 0
 	plan.points.append(plan_point4)
 	plan.modes.append(point_mode)
 	
@@ -147,12 +147,25 @@ while not rospy.is_shutdown():
 	point_mode = UInt8()
 	plan_point5.linear.x = 0.0326
 	plan_point5.linear.y = -0.3107
-	plan_point5.linear.z = z
+	plan_point5.linear.z = z +0.015
 	plan_point5.angular.x = 3.126
 	plan_point5.angular.y = 0.016
 	plan_point5.angular.z = 1.530
-	plan_mode.data = mode
+	point_mode.data = 0
 	plan.points.append(plan_point5)
+	plan.modes.append(point_mode)
+	
+	# put the ball down in new location 
+	plan_point51 = Twist()
+	point_mode = UInt8()
+	plan_point51.linear.x = 0.0326
+	plan_point51.linear.y = -0.3107
+	plan_point51.linear.z = z +0.015
+	plan_point51.angular.x = 3.126
+	plan_point51.angular.y = 0.016
+	plan_point51.angular.z = 1.530
+	point_mode.data = 1
+	plan.points.append(plan_point51)
 	plan.modes.append(point_mode)
 		
 	# pick arm back up and return to start by loop
@@ -164,7 +177,7 @@ while not rospy.is_shutdown():
 	plan_point6.angular.x = 3.126
 	plan_point6.angular.y = 0.016
 	plan_point6.angular.z = 1.530
-	plan_mode.data = mode
+	point_mode.data = mode
 	plan.points.append(plan_point6)
 	plan.modes.append(point_mode)
 	
