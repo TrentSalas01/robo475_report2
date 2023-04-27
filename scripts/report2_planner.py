@@ -46,7 +46,6 @@ if __name__ == '__main__':
     # set a 10Hz frequency for this loop
     loop_rate = rospy.Rate(10)
     # define a plan variable
-    plan = Plan()
     
 
 while not rospy.is_shutdown():
@@ -76,70 +75,65 @@ while not rospy.is_shutdown():
 	radius = sphere_params.radius
 	# End code from Saeidi, Hamed. University of North Carolina at Wilmington. hsaeidi-uncw/ur5e_control (github.com)
 	
-	#Motion 1: Starting place
+	# move above ball
+	plan = Plan()
 	plan_point1 = Twist()
-	plan_point1.linear.x = 0.13
-	plan_point1.linear.y = 0.7
-	plan_point1.linear.z = 0.255
-	plan_point1.angular.x = 3.14
-	plan_point1.angular.y = 0.00
-	plan_point1.angular.z = 3.14
-	# add point 1 to the plan
+	plan_point1.linear.x = -0.0166
+	plan_point1.linear.y = -0.406
+	plan_point1.linear.z = 0.429
+	plan_point1.angular.x = 3.126
+	plan_point1.angular.y = 0.016
+	plan_point1.angular.z = 1.530
 	plan.points.append(plan_point1)
-	
-	#Motion 2: "Pick Up" Object
+		
+	# pick up ball
 	plan_point2 = Twist()
 	plan_point2.linear.x = x
 	plan_point2.linear.y = y
-	plan_point2.linear.z = z + radius
-	plan_point2.angular.x = 3.14
-	plan_point2.angular.y = 0.00
-	plan_point2.angular.z = 3.14
-	# add point 2 to the plan
+	plan_point2.linear.z = z
+	plan_point2.angular.x = 3.112
+	plan_point2.angular.y = 0.056
+	plan_point2.angular.z = 1.531
 	plan.points.append(plan_point2)
-	
-	#Motion 3: Starting place
+		
+	# move the robot back above the ball
 	plan_point3 = Twist()
-	plan_point3.linear.x = 0.13
-	plan_point3.linear.y = 0.7
-	plan_point3.linear.z = 0.255
-	plan_point3.angular.x = 3.14
-	plan_point3.angular.y = 0.00
-	plan_point3.angular.z = 3.14
-	# add point 3 to the plan
+	plan_point3.linear.x = -0.0166
+	plan_point3.linear.y = -0.406
+	plan_point3.linear.z = 0.429
+	plan_point3.angular.x = 3.126
+	plan_point3.angular.y = 0.016
+	plan_point3.angular.z = 1.530
 	plan.points.append(plan_point3)
-	
-	#Motion 4: Move Object Further
+		
+	# move the robot holding the ball to a new location
 	plan_point4 = Twist()
-	plan_point4.linear.x = -0.2
-	plan_point4.linear.y = 0.57
-	plan_point4.linear.z = 0.19
-	plan_point4.angular.x = 3.14
-	plan_point4.angular.y = 0.00
-	plan_point4.angular.z = 3.14
-	# add point 4 to the plan
+	plan_point4.linear.x = 0.08
+	plan_point4.linear.y = -0.397
+	plan_point4.linear.z = 0.429
+	plan_point4.angular.x = 3.126
+	plan_point4.angular.y = 0.016
+	plan_point4.angular.z = 1.782
 	plan.points.append(plan_point4)
 	
-	#Motion 5: Lowering Object
+	# put the ball down in new location 
 	plan_point5 = Twist()
-	plan_point5.linear.x = -0.2
-	plan_point5.linear.y = 0.57
-	plan_point5.linear.z = 0.05
-	plan_point5.angular.x = 3.14
-	plan_point5.angular.y = 0.00
-	plan_point5.angular.z = 3.14
-	# add tpoint 5 to the plan
+	plan_point5.linear.x = 0.0326
+	plan_point5.linear.y = -0.3107
+	plan_point5.linear.z = z
+	plan_point5.angular.x = 3.133
+	plan_point5.angular.y = -0.0022
+	plan_point5.angular.z = 1.782
 	plan.points.append(plan_point5)
-	
-	#Motion 6: Lowering Object
+		
+	# pick arm back up and return to start
 	plan_point6 = Twist()
-	plan_point6.linear.x = -0.2
-	plan_point6.linear.y = 0.57
-	plan_point6.linear.z = 0.19
-	plan_point6.angular.x = 3.14
-	plan_point6.angular.y = 0.00
-	plan_point6.angular.z = 3.14
-	# add tpoint 5 to the plan
+	plan_point6.linear.x = 0.08
+	plan_point6.linear.y = -0.397
+	plan_point6.linear.z = 0.429
+	plan_point6.angular.x = 3.126
+	plan_point6.angular.y = 0.016
+	plan_point6.angular.z = 1.782
 	plan.points.append(plan_point6)
 	
 	# publish the plan
